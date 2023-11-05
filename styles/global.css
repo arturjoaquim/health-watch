@@ -1,0 +1,21 @@
+.login-page {
+    display: none;
+}
+
+.watch-page {
+    display: none;
+}
+
+.sorry-alert {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .login-page {
+        display: block;
+    }
+
+    .sorry-alert {
+        display: none;
+    }
+}

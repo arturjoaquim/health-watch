@@ -1,0 +1,28 @@
+.watch-page {
+    background-color: aliceblue;
+    text-align: center;
+    padding: 50px 0;
+    height: 100vh;
+}
+
+.health-monitor {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.signal-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    height: 250px;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.signal {
+    margin-top: 50px;
+    font-size: 50px;
+}

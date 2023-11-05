@@ -38,4 +38,30 @@
  // called when a message arrives
  function onMessageArrived(message) {
    console.log("onMessageArrived:"+message.payloadString);
+   localStorage.setItem(message.destinationName, message.payloadString)
+   setTemperatureInHTML(message)
+   setPulseInHTML(message)
+ }
+
+
+ function setTemperatureInHTML(message) {
+  if (!(message.destinationName == "temperature")) {
+    return false
+  }
+
+  const temp = localStorage.getItem(message.destinationName)
+  const displayTemp = document.querySelector(".temperature-signal")
+
+  displayTemp.innerHTML = `${temp}° C`
+}
+
+ function setPulseInHTML(message) {
+  if (!(message.destinationName == "pulse")) {
+    return false
+  }
+
+  const pulse = localStorage.getItem(message.destinationName)
+  const displayPulse = document.querySelector(".pulse-signal")
+
+  displayPulse.innerHTML = `${pulse} BPM`
  }

@@ -1,13 +1,14 @@
 const loginForm = document.querySelector("#login-form")
 
 const onSuccessLogin = () => {
-    client.subscribe("temperature");
-    client.subscribe("pulseSensor");
+    client.subscribe(`temperature`)
+    client.subscribe(`pulse`)
 
-    message = new Paho.MQTT.Message(`Client ${clientID} was conected.`);
-    message.destinationName = "/tesTopic";
-    client.send(message);
-    document.querySelector("#app").innerHTML = `<h1>Connected on MQTT</h1>`
+    // Send a message test
+    //message = new Paho.MQTT.Message(`Client ${clientID} was conected.`)
+    //message.destinationName = "/tesTopic"
+    //client.send(message);
+    setRouter("watch-page") // function from router.js
 }
 
 const onFailedLogin = (errorResponse) => {
@@ -21,24 +22,19 @@ const onFailedLogin = (errorResponse) => {
     loginForm.appendChild(errorMessage)
 }
 
-const connectOptions = {
-    useSSL: true,
-    userName: "username",
-    password: "password",
-    onSuccess: onSuccessLogin,
-    onFailure: onFailedLogin
-}
-
 const onLoginSubmit = async (event) => {
     event.preventDefault()
 
     const username = document.getElementById("username")
     const password = document.getElementById("password")
 
-    connectOptions.userName = username.value
-    connectOptions.password = password.value
-
-    client.connect(connectOptions)
+    client.connect({
+        useSSL: true,
+        userName: username.value,
+        password: password.value,
+        onSuccess: onSuccessLogin,
+        onFailure: onFailedLogin
+    })
 }
 
 document.querySelector("#login-submit").addEventListener("click", onLoginSubmit, false)
